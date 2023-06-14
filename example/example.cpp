@@ -142,7 +142,7 @@ void daily_example()
 void callback_example()
 {
     // Create the logger
-    auto logger = spdlog::callback_logger_mt("custom_callback_logger", [](const spdlog::details::log_msg &/*msg*/) {
+    auto logger = spdlog::callback_logger_mt("custom_callback_logger", [](const spdlog::details::log_msg & /*msg*/) {
         // do what you need to do with msg
     });
 }
@@ -279,7 +279,7 @@ struct fmt::formatter<my_type> : fmt::formatter<std::string>
 {
     auto format(my_type my, format_context &ctx) -> decltype(ctx.out())
     {
-        return format_to(ctx.out(), "[my_type i={}]", my.i);
+        return fmt::format_to(ctx.out(), "[my_type i={}]", my.i);
     }
 };
 
