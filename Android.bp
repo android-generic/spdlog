@@ -1,0 +1,24 @@
+// Android.bp
+
+// Module for spdlog_headers
+cc_library_headers {
+    name: "spdlog_headers",
+    export_include_dirs: ["include"],
+    vendor_available: true,
+}
+
+// Module for libspdlog
+cc_library_shared {
+    name: "libspdlog",
+    srcs: ["src/**/*.cpp"],
+    cflags: [
+        "-fexceptions",
+        "-DSPDLOG_COMPILED_LIB",
+        "-DDSPDLOG_SHARED_LIB",
+        "-DSPDLOG_FMT_EXTERNAL",
+    ],
+    vendor_available: true,
+    export_include_dirs: ["include"],
+    header_libs: ["spdlog_headers", "fmtlib11_headers"],
+    static_libs: ["fmtlib11"],
+}
